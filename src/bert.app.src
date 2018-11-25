@@ -1,0 +1,15 @@
+{application, bert,
+ [{description, "Erlang BERT encoder/decoder"},
+  {vsn, "1.1.0"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {maintainers, ["Tom Preston-Werner <tom@mojombo.com>"]},
+  {licenses, ["MIT"]},
+  {links, [{"Github", "https://github.com/stleon/bert.erl"}]}
+ ]}.
