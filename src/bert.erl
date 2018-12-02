@@ -42,6 +42,10 @@ encode_term(Term) ->
       TList = tuple_to_list(Tuple),
       TList2 = lists:map((fun encode_term/1), TList),
       list_to_tuple(TList2);
+    {bert, string, String} when is_list(String) ->
+      %% Unicode list to binary utf8
+      Bin = unicode:characters_to_binary(String, utf8),
+      {bert, string, Bin};
     _Else -> Term
   end.
 
@@ -57,6 +61,8 @@ decode_term(Term) ->
     {bert, false} -> false;
     {bert, dict, Dict} ->
       dict:from_list(Dict);
+    {bert, string, L} when is_list(L) ->
+      L;
     {bert, Other} ->
       {bert, Other};
     List when is_list(Term) ->
